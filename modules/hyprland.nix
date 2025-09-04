@@ -15,5 +15,7 @@
     withUWSM = true;
   };
 
+  programs.hyprlock.enable = true;
+
   programs.zoxide.enable = true;
 }

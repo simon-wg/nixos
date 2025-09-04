@@ -1,11 +1,9 @@
-{ inputs, ... }:
 {
   imports = [
     ../../home/core.nix
     ../../home/hyprland
     ../../home/shell
     ../../home/waybar
-    inputs.nixvim.homeModules.default
   ];
 
   programs.git = {
@@ -30,5 +28,5 @@
       };
     };
   };
-  programs.nixvim.enable = true;
+  programs.neovim.enable = true;
 }
