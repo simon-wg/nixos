@@ -63,7 +63,7 @@
           }:
           {
             imports = [ inputs.nixvim.nixosModules.nixvim ];
-            programs.nixvim = import ./nixvim.nix { inherit pkgs lib config; };
+            programs.nixvim = import ./nixvim.nix { inherit pkgs lib config ; };
           };
 
         homeModules.default =
@@ -75,7 +75,7 @@
           }:
           {
             imports = [ inputs.nixvim.homeModules.nixvim ];
-            programs.nixvim = import ./nixvim.nix { inherit pkgs lib config; };
+            programs.nixvim = import ./nixvim.nix { inherit pkgs lib config ; };
           };
 
         darwinModules.default =
@@ -87,7 +87,7 @@
           }:
           {
             imports = [ inputs.nixvim.darwinModules.nixvim ];
-            programs.nixvim = import ./nixvim.nix { inherit pkgs lib config; };
+            programs.nixvim = import ./nixvim.nix { inherit pkgs lib config ; };
           };
       };
     };

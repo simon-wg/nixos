@@ -5,4 +5,6 @@
     rofi
     hyprcursor
   ];
+
+  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 }

@@ -13,6 +13,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "input"
     ];
     packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default
@@ -26,11 +27,7 @@
   environment.systemPackages = with pkgs; [
     gnome-tweaks
     gnomeExtensions.tweaks-in-system-menu
-    wl-clipboard
-    cargo
-    rustc
     psmisc
-    gcc
     gnumake
     unzip
     wget

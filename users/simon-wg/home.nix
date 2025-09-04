@@ -4,6 +4,7 @@
     ../../home/core.nix
     ../../home/hyprland
     ../../home/shell
+    ../../home/waybar
     inputs.nixvim.homeModules.default
   ];
 

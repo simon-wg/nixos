@@ -13,7 +13,9 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim.url = "path:./nixvim";
+    nixvim = {
+      url = "path:./nixvim";
+    };
   };
 
   outputs =
@@ -36,9 +38,7 @@
                 config.allowUnfree = true;
               };
               inputs = {
-                inherit (inputs) zen-browser;
-                inherit (inputs) quickshell;
-                inherit (inputs) nixvim;
+                inherit (inputs) zen-browser quickshell nixvim;
               };
             };
           in
