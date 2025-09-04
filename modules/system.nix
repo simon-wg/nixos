@@ -7,29 +7,8 @@
   ...
 }:
 {
-  users.users.${username} = {
-    isNormalUser = true;
-    description = lib.mkDefault username;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "input"
-    ];
-    packages = with pkgs; [
-      inputs.zen-browser.packages."${system}".default
-      kitty
-      nerd-fonts.symbols-only
-      noto-fonts-color-emoji
-      stow
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
-    gnome-tweaks
-    gnomeExtensions.tweaks-in-system-menu
-    psmisc
     gnumake
-    unzip
     wget
   ];
 

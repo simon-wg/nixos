@@ -1,4 +1,13 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    nerd-fonts.symbols-only
+    noto-fonts-color-emoji
+    monaspace
+  ];
+
+  fonts.fontconfig.enable = true;
+
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;

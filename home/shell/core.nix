@@ -6,9 +6,6 @@
     statix
     deadnix
 
-    # Fonts
-    monaspace
-
     # Archives
     zip
     xz
