@@ -20,6 +20,7 @@
     stow
     lsof
     lm_sensors
+    wget
   ];
 
   programs.direnv = {

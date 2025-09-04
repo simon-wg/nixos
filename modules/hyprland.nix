@@ -10,12 +10,14 @@
     };
   };
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
+  programs = {
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+
+    hyprlock.enable = true;
+
+    zoxide.enable = true;
   };
-
-  programs.hyprlock.enable = true;
-
-  programs.zoxide.enable = true;
 }

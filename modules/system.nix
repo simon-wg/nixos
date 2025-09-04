@@ -1,17 +1,4 @@
 {
-  pkgs,
-  pkgs-stable,
-  lib,
-  username,
-  inputs,
-  ...
-}:
-{
-  environment.systemPackages = with pkgs; [
-    gnumake
-    wget
-  ];
-
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -72,10 +59,5 @@
     clean.enable = true;
     clean.extraArgs = "--keep-since 7d --keep 3";
     flake = "/home/simon-wg/nixos";
-  };
-
-  programs.fish = {
-    enable = true;
-    package = pkgs-stable.fish;
   };
 }
