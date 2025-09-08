@@ -1,6 +1,5 @@
 {
   description = "My NixOS flake";
-
   inputs = {
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,12 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    nvf = {
+      url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
   outputs =
     {
       nixpkgs,
@@ -23,39 +21,39 @@
       ...
     }@inputs:
     {
+      # NixOS System Configurations (without home-manager)
       nixosConfigurations = {
-        apollo =
-          let
+        apollo = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
             username = "simon-wg";
-            system = "x86_64-linux";
-            specialArgs = {
-              inherit username;
-              pkgs-stable = import nixpkgs-stable {
-                inherit system;
-                config.allowUnfree = true;
-              };
-              inputs = {
-                inherit (inputs) zen-browser quickshell;
-              };
+            pkgs-stable = import nixpkgs-stable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
             };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit system;
-            inherit specialArgs;
-            modules = [
-              ./hosts/apollo
-              ./users/${username}/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = inputs // specialArgs;
-                  users.${username} = import ./users/${username}/home.nix;
-                };
-              }
-            ];
           };
+          modules = [
+            ./hosts/apollo
+            ./users/simon-wg/configuration.nix
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        "simon-wg@apollo" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = inputs // {
+            pkgs-stable = import nixpkgs-stable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+          modules = [
+            inputs.nvf.homeManagerModules.default
+            inputs.zen-browser.homeModules.default
+            ./users/simon-wg/home.nix
+          ];
+        };
       };
     };
 }
