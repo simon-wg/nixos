@@ -1,7 +1,7 @@
 {
   imports = [
     ./core.nix
-    ./starship.nix
+    ./starship
     ./kitty
     ./fish
   ];

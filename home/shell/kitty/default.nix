@@ -11,7 +11,7 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
-    themeFile = "ayu_mirage";
+    themeFile = "catppuccin_mocha";
     settings = {
       background_opacity = 0.8;
       font_size = 16.0;

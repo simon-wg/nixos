@@ -35,4 +35,5 @@
       }
     ];
   };
+  home.shell.enableFishIntegration = true;
 }
