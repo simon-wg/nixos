@@ -14,6 +14,7 @@
     ];
     packages = with pkgs; [
       inputs.zen-browser.packages."${system}".default
+      dnsutils
     ];
     shell = pkgs.fish;
   };

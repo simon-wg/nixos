@@ -1,10 +1,6 @@
-{ pkgs, inputs, ... }:
 {
-  home.packages = with pkgs; [
-    inputs.quickshell.packages.${system}.default
-    rofi
-    hyprcursor
+  imports = [
+  ./hyprland.nix
+  ./hyprpaper.nix
   ];
-
-  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 }
