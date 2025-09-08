@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     fastfetch
@@ -23,8 +22,11 @@
     wget
   ];
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+  programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    zoxide.enable = true;
   };
 }

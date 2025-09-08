@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   nix.settings = {
     experimental-features = [
@@ -52,6 +53,16 @@
       #media-session.enable = true;
     };
     passSecretService.enable = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+        user = "greeter";
+      };
+    };
   };
 
   programs.nh = {
