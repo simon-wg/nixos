@@ -81,8 +81,9 @@
 
         telescope = {
           enable = true;
-          mappings = {
-            liveGrep = "<leader><space>";
+          setupOpts = {
+            color_devicons = true;
+            path_display = ["smart"];
           };
         };
       };
