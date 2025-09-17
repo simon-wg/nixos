@@ -51,6 +51,14 @@
 
   # List services that you want to enable:
 
+  # Enable suspend on lid close.
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+    lidSwitchDocked = "ignore";
+  };
+  powerManagement.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
