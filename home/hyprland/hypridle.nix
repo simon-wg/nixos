@@ -7,7 +7,7 @@
         ignore_dbus_inhibit = false;
         lock_cmd = "hyprlock";
       };
-    
+
       listener = [
         {
           timeout = 900;

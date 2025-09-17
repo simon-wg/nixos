@@ -79,13 +79,6 @@
           };
         };
 
-        telescope = {
-          enable = true;
-          setupOpts = {
-            color_devicons = true;
-            path_display = ["smart"];
-          };
-        };
       };
     };
   };
