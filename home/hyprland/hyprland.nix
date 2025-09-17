@@ -11,7 +11,9 @@
     settings = {
       monitor = [
         ",preferred,auto,1"
-        "eDP-1,1920x1080@60,auto,1"
+
+        # Thinkpad builtin monitor
+        "desc:BOE 0x09DC,1920x1080@60,auto,1"
       ];
 
       "$terminal" = "uwsm app -- kitty";
