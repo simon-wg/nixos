@@ -11,9 +11,9 @@
     settings = {
       ipc = "on";
       splash = false;
-      preload = [ "${config.home.homeDirectory}/.local/share/backgrounds/magritte-apple-man.jpg" ];
+      preload = [ "${config.home.homeDirectory}/.local/share/backgrounds/1.jpg" ];
       wallpaper = [
-        "eDP-1,${config.home.homeDirectory}/.local/share/backgrounds/magritte-apple-man.jpg"
+        "eDP-1,${config.home.homeDirectory}/.local/share/backgrounds/1.jpg"
       ];
     };
   };

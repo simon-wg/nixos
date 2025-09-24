@@ -1,9 +1,10 @@
 {
   imports = [
     ../../home/hyprland
-    ../../home/shell
-    ../../home/waybar
     ../../home/nvim
+    ../../home/shell
+    ../../home/utils
+    ../../home/waybar
   ];
 
   home = {

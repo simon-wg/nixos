@@ -5,11 +5,19 @@
       enableTreesitter = true;
       nix.enable = true;
       clang.enable = true;
+      python = {
+        enable = true;
+        lsp.servers = ["pyright"];
+        format = {
+          enable = true;
+          type = "ruff";
+        };
+      };
     };
 
     lsp = {
       enable = true;
-      lspconfig.enable = true;
+      formatOnSave = true;
       lspsaga = {
         enable = true;
         setupOpts = {
@@ -20,7 +28,6 @@
       };
       trouble.enable = true;
     };
-
 
     treesitter = {
       enable = true;
