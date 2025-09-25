@@ -27,6 +27,7 @@
         };
       };
       trouble.enable = true;
+      mappings.format = null;
     };
 
     treesitter = {
@@ -39,8 +40,21 @@
     };
 
     formatter = {
-      conform-nvim.enable = true;
+      conform-nvim = {
+        enable = true;
+      };
     };
+
+    keymaps = [
+      {
+        key = "<leader>lf";
+        mode = "n";
+        desc = "Format buffer";
+        silent = true;
+        lua = true;
+        action = ''require("conform").format'';
+      }
+    ];
 
     autocomplete.blink-cmp = {
       enable = true;

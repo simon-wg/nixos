@@ -1,18 +1,16 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
-    ../../modules/system.nix
-    ../../modules/docker.nix
     ./hardware-configuration.nix
+
+    ../../modules/docker.nix
+    ../../modules/system.nix
   ];
 
   boot = {
-    kernelParams = [ "quiet" ];
+    kernelParams = ["quiet"];
 
     consoleLogLevel = 3;
 
@@ -52,10 +50,10 @@
   # List services that you want to enable:
 
   # Enable suspend on lid close.
-  services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "suspend";
-    lidSwitchDocked = "ignore";
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+    HandleLidSwitchDocked = "ignore";
   };
   powerManagement.enable = true;
 

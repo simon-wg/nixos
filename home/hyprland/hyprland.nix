@@ -22,7 +22,6 @@
 
       exec-once = [
         "uwsm app -- quickshell"
-        "uwsm app -- waybar"
       ];
 
       env = [
