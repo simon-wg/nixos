@@ -16,9 +16,8 @@
 
   programs.home-manager.enable = true;
   programs.zen-browser.enable = true;
-  programs.wezterm.enable = true;
   programs.ghostty.enable = true;
-  programs.kitty.enable = true;
+  programs.nvf.enable = true;
 
   programs.git = {
     enable = true;
