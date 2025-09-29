@@ -4,7 +4,9 @@
   ...
 }: {
   imports = [
+    ../../modules/core.nix
     ../../modules/computer-networks.nix
+    ../../modules/operating-systems.nix
     ../../modules/hyprland.nix
     ../../modules/steam.nix
   ];

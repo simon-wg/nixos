@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     fastfetch
     statix
@@ -11,6 +10,7 @@
     unzip
 
     # System
+    bat
     eza
     fd
     fzf

@@ -8,6 +8,9 @@
     shellInit = ''
       set fish_greeting
     '';
+    interactiveShellInit = ''
+      set -g fish_color_autosuggestion white --dim
+    '';
     shellAbbrs = {
       ls = "eza";
       l = "eza --icons -l";

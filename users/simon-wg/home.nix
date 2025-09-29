@@ -3,6 +3,7 @@
     ../../home/hyprland
     ../../home/nvim
     ../../home/shell
+    ../../home/terminal
     ../../home/utils
     ../../home/waybar
   ];
@@ -14,8 +15,10 @@
   };
 
   programs.home-manager.enable = true;
-
   programs.zen-browser.enable = true;
+  programs.wezterm.enable = true;
+  programs.ghostty.enable = true;
+  programs.kitty.enable = true;
 
   programs.git = {
     enable = true;

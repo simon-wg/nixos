@@ -16,7 +16,7 @@
         "desc:BOE 0x09DC,1920x1080@60,auto,1"
       ];
 
-      "$terminal" = "uwsm app -- kitty";
+      "$terminal" = "uwsm app -- ghostty";
       "$fileManager" = "uwsm app -- dolphin";
       "$menu" = "uwsm app -- rofi -show drun";
 
