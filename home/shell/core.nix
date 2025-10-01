@@ -12,14 +12,22 @@
     # System
     bat
     eza
-    fd
-    fzf
     psmisc
-    ripgrep
     stow
     lsof
     lm_sensors
     wget
+
+    # Yazi stuff
+    yazi
+    ffmpeg
+    jq
+    fd
+    fzf
+    ripgrep
+    poppler
+    imagemagick
+    resvg
   ];
 
   programs = {

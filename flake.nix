@@ -48,6 +48,8 @@
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
+            username = "simon-wg";
+            hostname = "apollo";
           };
         modules = [
           inputs.nvf.homeManagerModules.default

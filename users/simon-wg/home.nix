@@ -5,7 +5,6 @@
     ../../home/utils
 
     ../../home/wm/hyprland
-    ../../home/wm/waybar
 
     ../../home/programs/nvim
     ../../home/programs/vscode
@@ -18,9 +17,15 @@
   };
 
   programs.home-manager.enable = true;
+
+  # Personal programs
   programs.zen-browser.enable = true;
   programs.ghostty.enable = true;
   programs.nvf.enable = true;
+  programs.neovim.enable = true;
+
+  # Enabled window managers/desktop environments
+  wayland.windowManager.hyprland.enable = true;
 
   programs.git = {
     enable = true;
@@ -44,5 +49,4 @@
       };
     };
   };
-  programs.neovim.enable = true;
 }

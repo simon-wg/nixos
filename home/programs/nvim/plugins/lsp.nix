@@ -1,9 +1,17 @@
 {
+  self,
+  username,
+  hostname,
+  ...
+}: {
   programs.nvf.settings.vim = {
     languages = {
       enableFormat = true;
       enableTreesitter = true;
-      nix.enable = true;
+      nix = {
+        enable = true;
+        lsp.servers = ["nixd"];
+      };
       clang.enable = true;
       python = {
         enable = true;
@@ -25,6 +33,10 @@
             code_action = "";
           };
         };
+      };
+      servers.nixd.settings.nixd.options = {
+        nixos.expr = ''(builtins.getFlake "${self.outPath}").nixosConfigurations.${hostname}.options'';
+        home_manager.expr = ''(builtins.getFlake "${self.outPath}").homeConfigurations."${username}@${hostname}".options'';
       };
       trouble.enable = true;
       mappings.format = null;
