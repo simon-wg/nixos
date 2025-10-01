@@ -5,6 +5,7 @@
     maven
     python313Packages.mininet-python
     nmap
+    openvswitch
   ];
   programs.wireshark = {
     enable = true;

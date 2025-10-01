@@ -1,11 +1,14 @@
 {
   imports = [
-    ../../home/hyprland
-    ../../home/nvim
     ../../home/shell
     ../../home/terminal
     ../../home/utils
-    ../../home/waybar
+
+    ../../home/wm/hyprland
+    ../../home/wm/waybar
+
+    ../../home/programs/nvim
+    ../../home/programs/vscode
   ];
 
   home = {

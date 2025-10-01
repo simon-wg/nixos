@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -52,7 +51,6 @@
       # no need to redefine it in your config for now)
       #media-session.enable = true;
     };
-    passSecretService.enable = true;
   };
 
   services.greetd = {
@@ -64,6 +62,10 @@
       };
     };
   };
+
+  # Enable gnome keyring for secrets
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   programs.nh = {
     enable = true;

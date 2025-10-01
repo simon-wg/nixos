@@ -55,6 +55,8 @@
     HandleLidSwitchExternalPower = "suspend";
     HandleLidSwitchDocked = "ignore";
   };
+  services.libinput.enable = true;
+  services.fwupd.enable = true;
   powerManagement.enable = true;
 
   # Enable the OpenSSH daemon.
