@@ -3,5 +3,7 @@
     ./core.nix
     ./starship
     ./fish
+
+    ./tools
   ];
 }

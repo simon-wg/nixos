@@ -5,7 +5,7 @@
 }: let
   cfg = config.wayland.windowManager.hyprland;
 in {
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf cfg.enable {
     services.hypridle = {
       enable = true;
       settings = {

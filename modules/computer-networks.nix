@@ -7,13 +7,15 @@
     nmap
     openvswitch
   ];
-  programs.wireshark = {
-    enable = true;
-    package = pkgs.wireshark;
-  };
-  programs.mininet.enable = true;
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk8;
+  programs = {
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
+    mininet.enable = true;
+    java = {
+      enable = true;
+      package = pkgs.jdk8;
+    };
   };
 }

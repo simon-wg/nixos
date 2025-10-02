@@ -49,26 +49,27 @@
 
   # List services that you want to enable:
 
-  # Enable suspend on lid close.
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchExternalPower = "suspend";
-    HandleLidSwitchDocked = "ignore";
+  services = {
+    # Enable suspend on lid close.
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+      HandleLidSwitchDocked = "ignore";
+    };
+    fwupd.enable = true;
+
+    openssh = {
+      enable = true;
+      settings = {
+        X11Forwarding = true;
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+      openFirewall = true;
+    };
   };
-  services.libinput.enable = true;
-  services.fwupd.enable = true;
-  powerManagement.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      X11Forwarding = true;
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-    openFirewall = true;
-  };
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;

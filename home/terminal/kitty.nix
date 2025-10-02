@@ -6,7 +6,7 @@
 }: let
   cfg = config.programs.kitty;
 in {
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       nerd-fonts.symbols-only
       noto-fonts-color-emoji

@@ -5,7 +5,7 @@
 }: let
   cfg = config.programs.wezterm;
 in {
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf cfg.enable {
     programs.wezterm.extraConfig = ''
             local wezterm = require 'wezterm'
             local config = wezterm.config_builder()

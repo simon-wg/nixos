@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkDefault;
+in {
   home.packages = with pkgs; [
     fastfetch
     statix
@@ -32,10 +38,11 @@
 
   programs = {
     direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      silent = true;
+      enable = mkDefault true;
+      nix-direnv.enable = mkDefault true;
+      silent = mkDefault true;
     };
-    zoxide.enable = true;
+    zoxide.enable = mkDefault true;
+    yazi.enable = mkDefault true;
   };
 }

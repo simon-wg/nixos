@@ -11,7 +11,8 @@ in {
     ./plugins/telescope.nix
     ./plugins/guess-indent.nix
   ];
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf cfg.enable {
+    programs.neovim.defaultEditor = true;
     programs.nvf = {
       enableManpages = true;
       settings = {
