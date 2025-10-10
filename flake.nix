@@ -50,6 +50,7 @@
             };
             username = "simon-wg";
             hostname = "apollo";
+            catppuccin = import ./catppuccin.nix;
           };
         modules = [
           inputs.nvf.homeManagerModules.default

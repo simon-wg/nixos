@@ -1,5 +1,7 @@
 {
   self,
+  lib,
+  pkgs,
   username,
   hostname,
   ...
@@ -22,6 +24,7 @@
         };
       };
       lua.enable = true;
+      qml.enable = true;
     };
 
     lsp = {

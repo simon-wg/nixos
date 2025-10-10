@@ -19,12 +19,12 @@ in {
       font-family = "Monaspace Neon";
       font-size = 16;
 
-      window-inherit-working-directory = true;
+      window-inherit-working-directory = false;
 
       window-padding-y = 0;
       window-padding-balance = true;
       window-padding-color = "extend";
-      background-opacity = 0.6;
+      background-opacity = 1;
     };
   };
 }

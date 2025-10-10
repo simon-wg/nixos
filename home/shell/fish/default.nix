@@ -14,6 +14,7 @@
     shellAbbrs = {
       ls = "eza";
       l = "eza --icons -l";
+      ll = "eza --icons -l";
       la = "eza --icons -la";
       lh = "eza --icons -lh";
       tree = "eza -T";

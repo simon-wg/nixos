@@ -6,6 +6,10 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+  ];
+
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
@@ -51,14 +55,14 @@
       # no need to redefine it in your config for now)
       #media-session.enable = true;
     };
-  };
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
-        user = "greeter";
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+          user = "greeter";
+        };
       };
     };
   };

@@ -17,9 +17,9 @@ in {
       settings = {
         ipc = "on";
         splash = false;
-        preload = ["${config.home.homeDirectory}/.local/share/backgrounds/1.jpg"];
+        preload = ["${config.home.homeDirectory}/.local/share/backgrounds/1.png"];
         wallpaper = [
-          "eDP-1,${config.home.homeDirectory}/.local/share/backgrounds/1.jpg"
+          "eDP-1,${config.home.homeDirectory}/.local/share/backgrounds/1.png"
         ];
       };
     };

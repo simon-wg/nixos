@@ -11,7 +11,46 @@ in {
       quickshell
       rofi
       hyprcursor
+      hyprpicker
+      nerd-fonts.symbols-only
+      wallust
     ];
+
+    programs.anyrun = {
+      enable = true;
+      config = {
+        x = {fraction = 0.5;};
+        y = {fraction = 0.3;};
+        width = {fraction = 0.3;};
+        hideIcons = false;
+        ignoreExclusiveZones = false;
+        layer = "overlay";
+        hidePluginInfo = false;
+        closeOnClick = false;
+        showResultsImmediately = false;
+        maxEntries = null;
+
+        plugins = [
+          "libapplications.so"
+        ];
+      };
+    };
+    services.walker = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+        app_launch_prefix = "";
+        terminal_title_flag = "";
+        locale = "";
+        close_when_open = false;
+        monitor = "";
+        hotreload_theme = false;
+        as_window = false;
+        timeout = 0;
+        disable_click_to_close = false;
+        force_keyboard_focus = false;
+      };
+    };
 
     wayland.windowManager.hyprland = {
       settings = {
@@ -39,20 +78,20 @@ in {
         general = {
           gaps_in = 5;
           gaps_out = 10;
-          border_size = 2;
+          border_size = 0;
           "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
           resize_on_border = false;
           allow_tearing = false;
-          layout = "dwindle";
+          layout = "master";
         };
 
         decoration = {
-          rounding = 10;
+          rounding = 0;
           rounding_power = 2;
 
           active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          inactive_opacity = 0.9;
 
           shadow = {
             enabled = true;
@@ -100,12 +139,14 @@ in {
           ];
         };
 
+        master = {
+          new_status = "slave";
+        };
+
         dwindle = {
           pseudotile = true;
           preserve_split = true;
         };
-
-        master.new_status = "master";
 
         misc = {
           force_default_wallpaper = 0;
@@ -129,58 +170,47 @@ in {
         };
 
         "$mainMod" = "SUPER";
+        "$shiftMod" = "$mainMod SHIFT";
 
-        bind = [
-          "$mainMod, return, exec, $terminal"
-          "$mainMod, Q, killactive,"
-          "$mainMod, M, exit,"
-          "$mainMod, E, exec, $fileManager"
-          "$mainMod, V, togglefloating,"
-          "alt, space, exec, $menu"
+        bind =
+          [
+            "$mainMod, return, exec, $terminal"
+            "$mainMod, Q, killactive,"
+            "$mainMod, M, exit,"
+            "$mainMod, E, exec, $fileManager"
+            "$mainMod, V, togglefloating,"
+            "alt, space, exec, $menu"
+            "alt, Print, exec, uwsm app -- hyprpicker"
 
-          # Dwindle
-          "$mainMod, P, pseudo"
-          "$mainMod, J, togglesplit"
+            # Dwindle
+            "$mainMod, P, pseudo"
+            "$mainMod, J, togglesplit"
 
-          # Move focus with mainMod + arrow keys
-          "$mainMod, left, movefocus, l"
-          "$mainMod, right, movefocus, r"
-          "$mainMod, up, movefocus, u"
-          "$mainMod, down, movefocus, d"
+            # Move focus with mainMod + arrow keys
+            "$mainMod, left, movefocus, l"
+            "$mainMod, right, movefocus, r"
+            "$mainMod, up, movefocus, u"
+            "$mainMod, down, movefocus, d"
 
-          # Switch workspaces with mainMod + [0-9]
-          "$mainMod, 1, workspace, 1"
-          "$mainMod, 2, workspace, 2"
-          "$mainMod, 3, workspace, 3"
-          "$mainMod, 4, workspace, 4"
-          "$mainMod, 5, workspace, 5"
-          "$mainMod, 6, workspace, 6"
-          "$mainMod, 7, workspace, 7"
-          "$mainMod, 8, workspace, 8"
-          "$mainMod, 9, workspace, 9"
-          "$mainMod, 0, workspace, 10"
+            # Example special workspace (scratchpad)
+            "$mainMod, S, togglespecialworkspace, magic"
+            "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-          # Move active window to a workspace with mainMod + SHIFT + [0-9]
-          "$mainMod SHIFT, 1, movetoworkspace, 1"
-          "$mainMod SHIFT, 2, movetoworkspace, 2"
-          "$mainMod SHIFT, 3, movetoworkspace, 3"
-          "$mainMod SHIFT, 4, movetoworkspace, 4"
-          "$mainMod SHIFT, 5, movetoworkspace, 5"
-          "$mainMod SHIFT, 6, movetoworkspace, 6"
-          "$mainMod SHIFT, 7, movetoworkspace, 7"
-          "$mainMod SHIFT, 8, movetoworkspace, 8"
-          "$mainMod SHIFT, 9, movetoworkspace, 9"
-          "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-          # Example special workspace (scratchpad)
-          "$mainMod, S, togglespecialworkspace, magic"
-          "$mainMod SHIFT, S, movetoworkspace, special:magic"
-
-          # Scroll through existing workspaces with mainMod + scroll
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
-        ];
-
+            # Scroll through existing workspaces with mainMod + scroll
+            "$mainMod, mouse_down, workspace, e+1"
+            "$mainMod, mouse_up, workspace, e-1"
+          ]
+          ++ (
+            builtins.concatLists (builtins.genList (
+                i: let
+                  ws = i + 1;
+                in [
+                  "$mainMod, ${toString ws}, workspace, ${toString ws}"
+                  "$shiftMod, ${toString ws}, movetoworkspace, ${toString ws}"
+                ]
+              )
+              9)
+          );
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging
           "$mainMod, mouse:272, movewindow"
