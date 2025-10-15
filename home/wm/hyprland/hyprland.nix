@@ -9,46 +9,58 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       quickshell
-      rofi
       hyprcursor
       hyprpicker
       nerd-fonts.symbols-only
+      pwvucontrol
       wallust
     ];
 
-    programs.anyrun = {
+    programs.rofi = {
       enable = true;
-      config = {
-        x = {fraction = 0.5;};
-        y = {fraction = 0.3;};
-        width = {fraction = 0.3;};
-        hideIcons = false;
-        ignoreExclusiveZones = false;
-        layer = "overlay";
-        hidePluginInfo = false;
-        closeOnClick = false;
-        showResultsImmediately = false;
-        maxEntries = null;
+      font = lib.mkForce "Monaspace Neon 16";
+      theme = let
+        inherit (config.lib.formats.rasi) mkLiteral;
+      in {
+        "window" = {
+          anchor = mkLiteral "north";
+          location = mkLiteral "north";
+          width = mkLiteral "100%";
+          padding = mkLiteral "4px";
+          children = mkLiteral "[ horibox ]";
+        };
+        "horibox" = {
+          orientation = mkLiteral "horizontal";
+          children = mkLiteral "[ entry, listview ]";
+        };
+        "listview" = {
+          layout = mkLiteral "horizontal";
+          spacing = mkLiteral "5px";
+          lines = mkLiteral "100";
+        };
+        "entry" = {
+          expand = mkLiteral "false";
+          width = mkLiteral "10em";
+        };
+        "element" = {
+          padding = mkLiteral "0px 2px";
+        };
+        "element selected" = {
+          background-color = mkLiteral "SteelBlue";
+        };
 
-        plugins = [
-          "libapplications.so"
-        ];
+        "element-text, element-icon" = {
+          background-color = mkLiteral "inherit";
+          text-color = mkLiteral "inherit";
+        };
       };
     };
-    services.walker = {
+
+    gtk = {
       enable = true;
-      systemd.enable = true;
-      settings = {
-        app_launch_prefix = "";
-        terminal_title_flag = "";
-        locale = "";
-        close_when_open = false;
-        monitor = "";
-        hotreload_theme = false;
-        as_window = false;
-        timeout = 0;
-        disable_click_to_close = false;
-        force_keyboard_focus = false;
+      iconTheme = {
+        name = "Tela";
+        package = pkgs.tela-icon-theme;
       };
     };
 
@@ -79,8 +91,6 @@ in {
           gaps_in = 5;
           gaps_out = 10;
           border_size = 0;
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
           resize_on_border = false;
           allow_tearing = false;
           layout = "master";
@@ -92,13 +102,6 @@ in {
 
           active_opacity = 1.0;
           inactive_opacity = 0.9;
-
-          shadow = {
-            enabled = true;
-            range = 4;
-            render_power = 3;
-            color = "rgba(1a1a1aee)";
-          };
 
           blur = {
             enabled = true;
@@ -150,7 +153,6 @@ in {
 
         misc = {
           force_default_wallpaper = 0;
-          disable_hyprland_logo = false;
         };
 
         input = {

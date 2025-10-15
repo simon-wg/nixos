@@ -6,12 +6,6 @@
   cfg = config.wayland.windowManager.hyprland;
 in {
   config = lib.mkIf cfg.enable {
-    home.file."my-wallpapers" = {
-      source = ./wallpapers;
-      target = ".local/share/backgrounds";
-      recursive = true;
-    };
-
     services.hyprpaper = {
       enable = true;
       settings = {

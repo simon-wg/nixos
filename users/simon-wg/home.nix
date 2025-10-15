@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ../../home/shell
     ../../home/terminal
@@ -49,6 +49,19 @@
     };
   };
 
-  # Enabled window managers/desktop environments
   wayland.windowManager.hyprland.enable = true;
+
+  # Stylix
+  stylix = {
+    enable = true;
+    image = ./wallpapers/1.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    fonts = {
+      monospace = {
+        name = "Monaspace Neon";
+        package = pkgs.monaspace;
+      };
+    };
+    targets.zen-browser.profileNames = ["default"];
+  };
 }

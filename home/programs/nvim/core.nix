@@ -20,7 +20,7 @@ in {
           withPython3 = true;
           withNodeJs = true;
           withRuby = true;
-          theme = {
+          theme = lib.mkForce {
             enable = true;
             name = "catppuccin";
             style = "mocha";

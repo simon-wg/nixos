@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nvf = {
       #url = "path:/home/simon-wg/Programming/Hobby/nvf";
@@ -20,7 +24,6 @@
     home-manager,
     ...
   } @ inputs: {
-    # NixOS System Configurations (without home-manager)
     nixosConfigurations = {
       apollo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -32,6 +35,7 @@
           };
         };
         modules = [
+          inputs.stylix.nixosModules.stylix
           ./hosts/apollo
           ./users/simon-wg/configuration.nix
         ];
@@ -53,6 +57,7 @@
             catppuccin = import ./catppuccin.nix;
           };
         modules = [
+          inputs.stylix.homeModules.stylix
           inputs.nvf.homeManagerModules.default
           inputs.zen-browser.homeModules.default
           ./users/simon-wg/home.nix
