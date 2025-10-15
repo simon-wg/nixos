@@ -1,13 +1,12 @@
 {pkgs, ...}: {
   imports = [
-    ../../home/shell
-    ../../home/terminal
-    ../../home/utils
+    ../../modules/home-manager/communication
+    ../../modules/home-manager/shell
+    ../../modules/home-manager/terminal
+    ../../modules/home-manager/utils
+    ../../modules/home-manager/programming
 
-    ../../home/wm/hyprland
-
-    ../../home/programs/nvim
-    ../../home/programs/vscode
+    ../../modules/home-manager/wm/hyprland
   ];
 
   home = {
@@ -51,17 +50,31 @@
 
   wayland.windowManager.hyprland.enable = true;
 
-  # Stylix
+  # Catppuccin for styling all available
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "flamingo";
+    hyprlock.enable = false;
+  };
+
+  # Stylix for other
   stylix = {
     enable = true;
-    image = ./wallpapers/1.png;
+    image = ../../assets/wallpapers/1.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    fonts = {
-      monospace = {
-        name = "Monaspace Neon";
-        package = pkgs.monaspace;
-      };
+    autoEnable = false;
+    fonts.monospace = {
+      name = "Monaspace Neon NF";
+      package = pkgs.monaspace-nerdfonts;
     };
-    targets.zen-browser.profileNames = ["default"];
+    targets.font-packages.enable = true;
+    targets.fontconfig.enable = true;
+    targets.zen-browser = {
+      enable = true;
+      profileNames = ["default"];
+    };
+    targets.hyprpaper.enable = true;
+    targets.hyprlock.enable = true;
   };
 }

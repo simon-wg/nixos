@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-custom.url = "path:/home/simon-wg/Programming/Hobby/nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,6 +12,7 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nvf = {
       #url = "path:/home/simon-wg/Programming/Hobby/nvf";
@@ -19,25 +21,30 @@
     };
   };
   outputs = {
+    home-manager,
     nixpkgs,
     nixpkgs-stable,
-    home-manager,
+    nixpkgs-custom,
+    self,
     ...
   } @ inputs: {
+    nixosModules = import ./modules/nixos;
+
     nixosConfigurations = {
       apollo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          username = "simon-wg";
+          inherit self;
           pkgs-stable = import nixpkgs-stable {
             system = "x86_64-linux";
             config.allowUnfree = true;
           };
         };
         modules = [
-          inputs.stylix.nixosModules.stylix
           ./hosts/apollo
-          ./users/simon-wg/configuration.nix
+
+          inputs.stylix.nixosModules.stylix
+          inputs.catppuccin.nixosModules.catppuccin
         ];
       };
     };
@@ -48,19 +55,31 @@
         extraSpecialArgs =
           inputs
           // {
+            inherit self;
             pkgs-stable = import nixpkgs-stable {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
             username = "simon-wg";
             hostname = "apollo";
-            catppuccin = import ./catppuccin.nix;
+
+            pkgs = import nixpkgs rec {
+              system = "x86_64-linux";
+              overlays = [
+                (final: prev: {
+                  monaspace = nixpkgs-custom.legacyPackages.${system}.monaspace;
+                  monaspace-nerdfonts = nixpkgs-custom.legacyPackages.${system}.monaspace-nerdfonts;
+                })
+              ];
+            };
           };
         modules = [
+          ./users/simon-wg/home.nix
+
           inputs.stylix.homeModules.stylix
+          inputs.catppuccin.homeModules.catppuccin
           inputs.nvf.homeManagerModules.default
           inputs.zen-browser.homeModules.default
-          ./users/simon-wg/home.nix
         ];
       };
     };

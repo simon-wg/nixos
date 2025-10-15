@@ -1,12 +1,40 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{
+  self,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/docker.nix
-    ../../modules/system.nix
+    ../../users/simon-wg/system.nix
+
+    self.nixosModules.core.locale
+    self.nixosModules.core.security
+    self.nixosModules.core.users
+    self.nixosModules.core.nix
+
+    self.nixosModules.hardware.audio
+    self.nixosModules.hardware.backlight
+    self.nixosModules.hardware.bluetooth
+    self.nixosModules.hardware.firmware
+    self.nixosModules.hardware.printing
+
+    self.nixosModules.networking.core
+
+    self.nixosModules.virtualisation.docker
+
+    self.nixosModules.courses.computer-networks
+    self.nixosModules.courses.operating-systems
+
+    self.nixosModules.desktop.display-manager
+    self.nixosModules.desktop.fonts
+    self.nixosModules.desktop.hyprland
+    self.nixosModules.desktop.xserver
+
+    self.nixosModules.gaming.steam
   ];
 
   boot = {
@@ -30,25 +58,8 @@
   };
 
   networking.hostName = "apollo"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
+  # Laptop specific settings
   services = {
     # Enable suspend on lid close.
     logind.settings.Login = {
@@ -56,56 +67,7 @@
       HandleLidSwitchExternalPower = "suspend";
       HandleLidSwitchDocked = "ignore";
     };
-    fwupd.enable = true;
-
-    openssh = {
-      enable = true;
-      settings = {
-        X11Forwarding = true;
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-      };
-      openFirewall = true;
-    };
   };
-
-  # Enable the OpenSSH daemon.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-qt;
-  };
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        # Shows battery charge of connected devices on supported
-        # Bluetooth adapters. Defaults to 'false'.
-        Experimental = true;
-        # When enabled other devices can connect faster to us, however
-        # the tradeoff is increased power consumption. Defaults to
-        # 'false'.
-        FastConnectable = true;
-      };
-      Policy = {
-        # Enable all controllers when they are found. This includes
-        # adapters present on start as well as adapters that are plugged
-        # in later on. Defaults to 'true'.
-        AutoEnable = true;
-      };
-    };
-  };
-
-  services.blueman.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
