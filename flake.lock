@@ -267,14 +267,18 @@
     },
     "nixpkgs-custom": {
       "locked": {
-        "lastModified": 1760559418,
-        "narHash": "sha256-N1ObM8n4Ji2RnaTvoep1bzKexHtmv0Np81kCX1TnmBI=",
-        "path": "/home/simon-wg/Programming/Hobby/nixpkgs",
-        "type": "path"
+        "lastModified": 1760611939,
+        "narHash": "sha256-2WOu64IWwlqTn62Act7/97X6lRI5ACA9A3KQwJ7/KDw=",
+        "owner": "simon-wg",
+        "repo": "nixpkgs",
+        "rev": "8de8d9c794e3b07dd6c2ef97110afb0b829f38ee",
+        "type": "github"
       },
       "original": {
-        "path": "/home/simon-wg/Programming/Hobby/nixpkgs",
-        "type": "path"
+        "owner": "simon-wg",
+        "ref": "monaspace",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs-stable": {

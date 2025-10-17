@@ -175,6 +175,16 @@ in {
           };
         };
 
+        # Specific settings for Thinkpad Touchpad
+        device = [
+          {
+            name = "synps/2-synaptics-touchpad";
+            disable_while_typing = true;
+            tap-and-drag = false;
+            drag_lock = false;
+          }
+        ];
+
         "$mainMod" = "SUPER";
         "$shiftMod" = "$mainMod SHIFT";
 
@@ -217,6 +227,7 @@ in {
               )
               9)
           );
+
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging
           "$mainMod, mouse:272, movewindow"

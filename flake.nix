@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-custom.url = "path:/home/simon-wg/Programming/Hobby/nixpkgs";
+    nixpkgs-custom.url = "github:simon-wg/nixpkgs/monaspace";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +29,7 @@
     ...
   } @ inputs: {
     nixosModules = import ./modules/nixos;
+    homeModules = import ./modules/home-manager;
 
     nixosConfigurations = {
       apollo = nixpkgs.lib.nixosSystem {

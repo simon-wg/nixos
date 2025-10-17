@@ -24,6 +24,7 @@
     bluetooth = ./hardware/bluetooth.nix;
     firmware = ./hardware/firmware.nix;
     printing = ./hardware/printing.nix;
+    touchpad = ./hardware/touchpad.nix;
   };
   networking = {
     core = ./networking/core.nix;

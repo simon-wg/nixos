@@ -7,13 +7,6 @@
 in {
   home.packages = with pkgs; [
     fastfetch
-    statix
-    deadnix
-
-    # Archives
-    zip
-    xz
-    unzip
 
     # System
     bat
@@ -23,17 +16,6 @@ in {
     lsof
     lm_sensors
     wget
-
-    # Yazi stuff
-    yazi
-    ffmpeg
-    jq
-    fd
-    fzf
-    ripgrep
-    poppler
-    imagemagick
-    resvg
   ];
 
   programs = {
@@ -43,6 +25,5 @@ in {
       silent = mkDefault true;
     };
     zoxide.enable = mkDefault true;
-    yazi.enable = mkDefault true;
   };
 }

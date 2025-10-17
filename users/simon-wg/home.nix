@@ -1,12 +1,28 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  self,
+  ...
+}: {
   imports = [
-    ../../modules/home-manager/communication
-    ../../modules/home-manager/shell
-    ../../modules/home-manager/terminal
-    ../../modules/home-manager/utils
-    ../../modules/home-manager/programming
+    self.homeModules.applications.communication
+    self.homeModules.applications.documents
+    self.homeModules.applications.multimedia
 
-    ../../modules/home-manager/wm/hyprland
+    self.homeModules.desktop-environment.wayland.core
+    self.homeModules.desktop-environment.wayland.hyprland
+
+    self.homeModules.development.editors.neovim
+    self.homeModules.development.editors.vscode
+    self.homeModules.development.languages.nix
+    self.homeModules.development.terminals.ghostty
+    self.homeModules.development.tools.gh
+
+    self.homeModules.productivity.file-management.core
+    self.homeModules.productivity.file-management.yazi
+
+    self.homeModules.shell.core
+    self.homeModules.shell.fish
+    self.homeModules.shell.starship
   ];
 
   home = {
@@ -20,9 +36,6 @@
 
     # Personal programs
     zen-browser.enable = true;
-    ghostty.enable = true;
-    nvf.enable = true;
-    neovim.enable = true;
 
     git = {
       enable = true;

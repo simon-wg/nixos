@@ -21,6 +21,7 @@
     self.nixosModules.hardware.bluetooth
     self.nixosModules.hardware.firmware
     self.nixosModules.hardware.printing
+    self.nixosModules.hardware.touchpad
 
     self.nixosModules.networking.core
 

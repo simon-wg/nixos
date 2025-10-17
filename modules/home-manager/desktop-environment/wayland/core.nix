@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    vlc
-    geeqie
+    wl-clipboard
   ];
-  programs.zathura.enable = true;
 }
