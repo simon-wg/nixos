@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   users.users.simon-wg = {
     isNormalUser = true;
     description = lib.mkForce "Simon Westlin Green";

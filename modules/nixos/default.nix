@@ -25,9 +25,11 @@
     firmware = ./hardware/firmware.nix;
     printing = ./hardware/printing.nix;
     touchpad = ./hardware/touchpad.nix;
+    zswap = ./hardware/zswap.nix;
   };
   networking = {
     core = ./networking/core.nix;
+    vpn = ./networking/vpn.nix;
   };
   virtualisation = {
     docker = ./virtualisation/docker.nix;

@@ -5,7 +5,8 @@
   self,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
 
@@ -22,8 +23,10 @@
     self.nixosModules.hardware.firmware
     self.nixosModules.hardware.printing
     self.nixosModules.hardware.touchpad
+    self.nixosModules.hardware.zswap
 
     self.nixosModules.networking.core
+    self.nixosModules.networking.vpn
 
     self.nixosModules.virtualisation.docker
 
@@ -39,7 +42,7 @@
   ];
 
   boot = {
-    kernelParams = ["quiet"];
+    kernelParams = [ "quiet" ];
 
     consoleLogLevel = 3;
 
@@ -69,6 +72,11 @@
       HandleLidSwitchDocked = "ignore";
     };
   };
+  boot.kernelModules = [
+    "rmi_core"
+    "rmi_smbus"
+    "rmi_ps2"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

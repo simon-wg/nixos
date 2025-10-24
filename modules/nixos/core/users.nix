@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   users = {
     mutableUsers = true;
     defaultUserShell = pkgs.fish;

@@ -2,9 +2,11 @@
   pkgs,
   self,
   ...
-}: {
+}:
+{
   imports = [
     self.homeModules.applications.communication
+    self.homeModules.applications.crypto
     self.homeModules.applications.documents
     self.homeModules.applications.multimedia
 
@@ -39,12 +41,11 @@
 
     git = {
       enable = true;
-      userName = "Simon Westlin Green";
-      userEmail = "simon.green@live.se";
-      signing = {
-        key = "8B6707841AF02C24";
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Simon Westlin Green";
+          email = "simon.green@live.se";
+        };
         init = {
           defaultBranch = "main";
         };
@@ -57,6 +58,9 @@
         tag = {
           gpgSign = true;
         };
+      };
+      signing = {
+        key = "8B6707841AF02C24";
       };
     };
   };
@@ -79,13 +83,13 @@
     autoEnable = false;
     fonts.monospace = {
       name = "Monaspace Neon NF";
-      package = pkgs.monaspace-nerdfonts;
+      package = pkgs.monaspace.nerdfonts;
     };
     targets.font-packages.enable = true;
     targets.fontconfig.enable = true;
     targets.zen-browser = {
       enable = true;
-      profileNames = ["default"];
+      profileNames = [ "default" ];
     };
     targets.hyprpaper.enable = true;
     targets.hyprlock.enable = true;

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.programs.nvf;
-in {
+in
+{
   imports = [
     ./plugins/lsp.nix
     ./plugins/mini.nix

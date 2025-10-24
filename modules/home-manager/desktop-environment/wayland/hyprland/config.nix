@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.wayland.windowManager.hyprland;
-in {
+in
+{
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       quickshell
@@ -31,41 +33,43 @@ in {
     programs.rofi = {
       enable = true;
       font = lib.mkForce "Monaspace Neon 16";
-      theme = let
-        inherit (config.lib.formats.rasi) mkLiteral;
-      in {
-        "window" = {
-          anchor = mkLiteral "north";
-          location = mkLiteral "north";
-          width = mkLiteral "100%";
-          padding = mkLiteral "4px";
-          children = mkLiteral "[ horibox ]";
-        };
-        "horibox" = {
-          orientation = mkLiteral "horizontal";
-          children = mkLiteral "[ entry, listview ]";
-        };
-        "listview" = {
-          layout = mkLiteral "horizontal";
-          spacing = mkLiteral "5px";
-          lines = mkLiteral "100";
-        };
-        "entry" = {
-          expand = mkLiteral "false";
-          width = mkLiteral "10em";
-        };
-        "element" = {
-          padding = mkLiteral "0px 2px";
-        };
-        "element selected" = {
-          background-color = mkLiteral "SteelBlue";
-        };
+      theme =
+        let
+          inherit (config.lib.formats.rasi) mkLiteral;
+        in
+        {
+          "window" = {
+            anchor = mkLiteral "north";
+            location = mkLiteral "north";
+            width = mkLiteral "100%";
+            padding = mkLiteral "4px";
+            children = mkLiteral "[ horibox ]";
+          };
+          "horibox" = {
+            orientation = mkLiteral "horizontal";
+            children = mkLiteral "[ entry, listview ]";
+          };
+          "listview" = {
+            layout = mkLiteral "horizontal";
+            spacing = mkLiteral "5px";
+            lines = mkLiteral "100";
+          };
+          "entry" = {
+            expand = mkLiteral "false";
+            width = mkLiteral "10em";
+          };
+          "element" = {
+            padding = mkLiteral "0px 2px";
+          };
+          "element selected" = {
+            background-color = mkLiteral "SteelBlue";
+          };
 
-        "element-text, element-icon" = {
-          background-color = mkLiteral "inherit";
-          text-color = mkLiteral "inherit";
+          "element-text, element-icon" = {
+            background-color = mkLiteral "inherit";
+            text-color = mkLiteral "inherit";
+          };
         };
-      };
     };
 
     wayland.windowManager.hyprland = {
@@ -80,6 +84,7 @@ in {
         "$terminal" = "uwsm app -- ghostty";
         "$fileManager" = "uwsm app -- dolphin";
         "$menu" = "uwsm app -- rofi -show drun";
+        "$browser" = "uwsm app -- zen";
 
         exec-once = [
           "uwsm app -- quickshell"
@@ -175,10 +180,10 @@ in {
           };
         };
 
-        # Specific settings for Thinkpad Touchpad
         device = [
           {
-            name = "synps/2-synaptics-touchpad";
+            name = "synaptics-tm3471-030";
+            sensitivity = -0.2;
             disable_while_typing = true;
             tap-and-drag = false;
             drag_lock = false;
@@ -188,45 +193,46 @@ in {
         "$mainMod" = "SUPER";
         "$shiftMod" = "$mainMod SHIFT";
 
-        bind =
-          [
-            "$mainMod, return, exec, $terminal"
-            "$mainMod, Q, killactive,"
-            "$mainMod, M, exit,"
-            "$mainMod, E, exec, $fileManager"
-            "$mainMod, V, togglefloating,"
-            "alt, space, exec, $menu"
-            "alt, Print, exec, uwsm app -- hyprpicker"
+        bind = [
+          "$mainMod, return, exec, $terminal"
+          "$mainMod, Q, killactive,"
+          "$mainMod, M, exit,"
+          "$mainMod, E, exec, $fileManager"
+          "$mainMod, B, exec, $browser"
+          "$mainMod, V, togglefloating,"
+          "alt, space, exec, $menu"
+          "alt, Print, exec, uwsm app -- hyprpicker"
 
-            # Dwindle
-            "$mainMod, P, pseudo"
-            "$mainMod, J, togglesplit"
+          # Dwindle
+          "$mainMod, P, pseudo"
+          "$mainMod, J, togglesplit"
 
-            # Move focus with mainMod + arrow keys
-            "$mainMod, left, movefocus, l"
-            "$mainMod, right, movefocus, r"
-            "$mainMod, up, movefocus, u"
-            "$mainMod, down, movefocus, d"
+          # Move focus with mainMod + arrow keys
+          "$mainMod, left, movefocus, l"
+          "$mainMod, right, movefocus, r"
+          "$mainMod, up, movefocus, u"
+          "$mainMod, down, movefocus, d"
 
-            # Example special workspace (scratchpad)
-            "$mainMod, S, togglespecialworkspace, magic"
-            "$mainMod SHIFT, S, movetoworkspace, special:magic"
+          # Example special workspace (scratchpad)
+          "$mainMod, S, togglespecialworkspace, magic"
+          "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-            # Scroll through existing workspaces with mainMod + scroll
-            "$mainMod, mouse_down, workspace, e+1"
-            "$mainMod, mouse_up, workspace, e-1"
-          ]
-          ++ (
-            builtins.concatLists (builtins.genList (
-                i: let
-                  ws = i + 1;
-                in [
-                  "$mainMod, ${toString ws}, workspace, ${toString ws}"
-                  "$shiftMod, ${toString ws}, movetoworkspace, ${toString ws}"
-                ]
-              )
-              9)
-          );
+          # Scroll through existing workspaces with mainMod + scroll
+          "$mainMod, mouse_down, workspace, e+1"
+          "$mainMod, mouse_up, workspace, e-1"
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = i + 1;
+            in
+            [
+              "$mainMod, ${toString ws}, workspace, ${toString ws}"
+              "$shiftMod, ${toString ws}, movetoworkspace, ${toString ws}"
+            ]
+          ) 9
+        ));
 
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging

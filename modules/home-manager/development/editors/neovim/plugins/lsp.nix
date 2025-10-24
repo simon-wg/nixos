@@ -1,23 +1,27 @@
 {
   self,
-  lib,
-  pkgs,
   username,
   hostname,
   ...
-}: {
+}:
+{
   programs.nvf.settings.vim = {
     languages = {
       enableFormat = true;
       enableTreesitter = true;
+      ts.enable = true;
       nix = {
         enable = true;
-        lsp.servers = ["nixd"];
+        lsp.servers = [ "nixd" ];
+        format = {
+          enable = true;
+          type = "nixfmt";
+        };
       };
       clang.enable = true;
       python = {
         enable = true;
-        lsp.servers = ["pyright"];
+        lsp.servers = [ "pyright" ];
         format = {
           enable = true;
           type = "ruff";

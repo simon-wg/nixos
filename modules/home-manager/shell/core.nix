@@ -2,9 +2,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkDefault;
-in {
+in
+{
   home.packages = with pkgs; [
     fastfetch
 
