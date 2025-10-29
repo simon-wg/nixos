@@ -6,7 +6,6 @@
 {
   imports = [
     self.homeModules.applications.communication
-    self.homeModules.applications.crypto
     self.homeModules.applications.documents
     self.homeModules.applications.multimedia
 

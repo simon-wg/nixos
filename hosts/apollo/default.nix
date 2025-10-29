@@ -30,9 +30,6 @@
 
     self.nixosModules.virtualisation.docker
 
-    self.nixosModules.courses.computer-networks
-    self.nixosModules.courses.operating-systems
-
     self.nixosModules.desktop.display-manager
     self.nixosModules.desktop.fonts
     self.nixosModules.desktop.hyprland

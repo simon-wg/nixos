@@ -1,7 +1,6 @@
 {
   description = "My NixOS flake";
   inputs = {
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-custom.url = "github:simon-wg/nixpkgs/monaspace";
     home-manager = {
@@ -24,7 +23,6 @@
     {
       home-manager,
       nixpkgs,
-      nixpkgs-stable,
       nixpkgs-custom,
       self,
       ...
@@ -40,16 +38,42 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit self;
-            pkgs-stable = import nixpkgs-stable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
           };
           modules = [
             ./hosts/apollo
 
             inputs.stylix.nixosModules.stylix
             inputs.catppuccin.nixosModules.catppuccin
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = inputs // {
+                inherit self;
+                username = "simon-wg";
+                hostname = "apollo";
+              };
+
+              # Add overlays for home-manager's pkgs
+              nixpkgs.overlays = [
+                (final: prev: {
+                  inherit (import nixpkgs-custom { system = "x86_64-linux"; }) monaspace;
+                })
+              ];
+
+              # Configure home-manager for your user
+              home-manager.users.simon-wg = {
+                imports = [
+                  ./users/simon-wg/home.nix
+
+                  inputs.stylix.homeModules.stylix
+                  inputs.catppuccin.homeModules.catppuccin
+                  inputs.nvf.homeManagerModules.default
+                  inputs.zen-browser.homeModules.default
+                ];
+              };
+            }
           ];
         };
       };
@@ -67,10 +91,6 @@
           };
           extraSpecialArgs = inputs // {
             inherit self;
-            pkgs-stable = import nixpkgs-stable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
             username = "simon-wg";
             hostname = "apollo";
           };
