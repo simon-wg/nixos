@@ -47,8 +47,10 @@
     loader = {
       grub = {
         enable = true;
+        enableCryptodisk = true;
         efiSupport = true;
         device = "nodev";
+        useOSProber = true;
       };
       timeout = 10;
       efi.canTouchEfiVariables = true;
@@ -56,6 +58,15 @@
 
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
+  };
+
+  fileSystems = {
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+    "/nix".options = [
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   networking.hostName = "apollo"; # Define your hostname.

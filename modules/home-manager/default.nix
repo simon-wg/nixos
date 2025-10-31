@@ -1,6 +1,7 @@
 {
   applications = {
     communication = ./applications/communication.nix;
+    core = ./applications/core.nix;
     documents = ./applications/documents.nix;
     multimedia = ./applications/multimedia.nix;
   };

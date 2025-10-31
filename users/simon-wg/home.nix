@@ -1,22 +1,14 @@
 {
+  lib,
   pkgs,
   self,
   ...
 }:
 {
   imports = [
-    self.homeModules.applications.communication
-    self.homeModules.applications.documents
-    self.homeModules.applications.multimedia
-
-    self.homeModules.desktop-environment.wayland.core
-    self.homeModules.desktop-environment.wayland.hyprland
-
     self.homeModules.development.editors.neovim
-    self.homeModules.development.editors.vscode
     self.homeModules.development.languages.nix
     self.homeModules.development.terminals.ghostty
-    self.homeModules.development.tools.gh
 
     self.homeModules.productivity.file-management.core
     self.homeModules.productivity.file-management.yazi
@@ -30,20 +22,26 @@
     username = "simon-wg";
     homeDirectory = "/home/simon-wg";
     stateVersion = "25.05";
+    pointerCursor = {
+      package = pkgs.hackneyed;
+      name = "Hackneyed";
+      size = 64;
+      x11.enable = true;
+      gtk.enable = true;
+      hyprcursor.enable = true;
+      hyprcursor.size = 64;
+    };
   };
 
   programs = {
     home-manager.enable = true;
-
-    # Personal programs
-    zen-browser.enable = true;
 
     git = {
       enable = true;
       settings = {
         user = {
           name = "Simon Westlin Green";
-          email = "simon.green@live.se";
+          email = "simonwestlingreen@proton.me";
         };
         init = {
           defaultBranch = "main";
@@ -52,19 +50,17 @@
           autoSetupRemote = true;
         };
         commit = {
-          gpgSign = true;
+          gpgSign = lib.mkDefault true;
         };
         tag = {
-          gpgSign = true;
+          gpgSign = lib.mkDefault true;
         };
       };
       signing = {
-        key = "8B6707841AF02C24";
+        key = lib.mkDefault "8B6707841AF02C24";
       };
     };
   };
-
-  wayland.windowManager.hyprland.enable = true;
 
   # Catppuccin for styling all available
   catppuccin = {
@@ -80,12 +76,6 @@
     image = ../../assets/wallpapers/1.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     autoEnable = false;
-    fonts.monospace = {
-      name = "Monaspace Neon NF";
-      package = pkgs.monaspace.nerdfonts;
-    };
-    targets.font-packages.enable = true;
-    targets.fontconfig.enable = true;
     targets.zen-browser = {
       enable = true;
       profileNames = [ "default" ];

@@ -65,6 +65,7 @@
               # Configure home-manager for your user
               home-manager.users.simon-wg = {
                 imports = [
+                  ./hosts/apollo/home.nix
                   ./users/simon-wg/home.nix
 
                   inputs.stylix.homeModules.stylix
@@ -79,7 +80,7 @@
       };
 
       homeConfigurations = {
-        "simon-wg@apollo" = home-manager.lib.homeManagerConfiguration {
+        "simon-wg@argus" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
@@ -92,15 +93,11 @@
           extraSpecialArgs = inputs // {
             inherit self;
             username = "simon-wg";
-            hostname = "apollo";
+            hostname = "argus";
           };
           modules = [
+            ./hosts/argus/home.nix
             ./users/simon-wg/home.nix
-
-            inputs.stylix.homeModules.stylix
-            inputs.catppuccin.homeModules.catppuccin
-            inputs.nvf.homeManagerModules.default
-            inputs.zen-browser.homeModules.default
           ];
         };
       };

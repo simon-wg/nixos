@@ -11,7 +11,6 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       quickshell
-      hyprcursor
       hyprpicker
       nerd-fonts.symbols-only
       monaspace
@@ -20,15 +19,6 @@ in
     ];
 
     fonts.fontconfig.enable = true;
-
-    gtk = {
-      enable = true;
-      colorScheme = "dark";
-    };
-    qt = {
-      enable = true;
-      style.name = "kvantum";
-    };
 
     programs.rofi = {
       enable = true;
@@ -88,12 +78,6 @@ in
 
         exec-once = [
           "uwsm app -- quickshell"
-        ];
-
-        env = [
-          "XCURSOR_SIZE,24"
-          "HYPRCURSOR_THEME,NotwaitaBlack"
-          "HYPRCURSOR_SIZE,24"
         ];
 
         general = {
