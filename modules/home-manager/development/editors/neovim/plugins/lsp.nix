@@ -15,7 +15,7 @@
         lsp.servers = [ "nixd" ];
         format = {
           enable = true;
-          type = "nixfmt";
+          type = [ "nixfmt" ];
         };
       };
       clang.enable = true;
@@ -24,11 +24,12 @@
         lsp.servers = [ "pyright" ];
         format = {
           enable = true;
-          type = "ruff";
+          type = [ "ruff" ];
         };
       };
       lua.enable = true;
       qml.enable = true;
+      go.enable = true;
     };
 
     lsp = {

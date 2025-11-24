@@ -1,4 +1,5 @@
 {
+  programs.vscode.enable = true;
   home.file."vscode-runtime-arguments" = {
     text = ''
       // This configuration file allows you to pass permanent command line arguments to VS Code.

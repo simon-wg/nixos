@@ -21,6 +21,7 @@
     self.nixosModules.hardware.backlight
     self.nixosModules.hardware.bluetooth
     self.nixosModules.hardware.firmware
+    self.nixosModules.hardware.power
     self.nixosModules.hardware.printing
     self.nixosModules.hardware.touchpad
     self.nixosModules.hardware.zswap

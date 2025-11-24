@@ -13,7 +13,7 @@ in
       quickshell
       hyprpicker
       nerd-fonts.symbols-only
-      monaspace
+      monaspace.static
       pwvucontrol
       wallust
     ];

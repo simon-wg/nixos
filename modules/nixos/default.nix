@@ -5,10 +5,6 @@
     security = ./core/security.nix;
     users = ./core/users.nix;
   };
-  courses = {
-    computer-networks = ./courses/computer-networks.nix;
-    operating-systems = ./courses/operating-systems.nix;
-  };
   desktop = {
     display-manager = ./desktop/display-manager.nix;
     fonts = ./desktop/fonts.nix;
@@ -23,6 +19,7 @@
     backlight = ./hardware/backlight.nix;
     bluetooth = ./hardware/bluetooth.nix;
     firmware = ./hardware/firmware.nix;
+    power = ./hardware/power.nix;
     printing = ./hardware/printing.nix;
     touchpad = ./hardware/touchpad.nix;
     zswap = ./hardware/zswap.nix;

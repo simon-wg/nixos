@@ -68,6 +68,7 @@
     flavor = "mocha";
     accent = "flamingo";
     hyprlock.enable = false;
+    vscode.profiles.default.enable = false;
   };
 
   # Stylix for other
