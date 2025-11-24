@@ -25,11 +25,11 @@
     pointerCursor = {
       package = pkgs.hackneyed;
       name = "Hackneyed";
-      size = 64;
+      size = 24;
       x11.enable = true;
       gtk.enable = true;
       hyprcursor.enable = true;
-      hyprcursor.size = 64;
+      hyprcursor.size = 24;
     };
   };
 
