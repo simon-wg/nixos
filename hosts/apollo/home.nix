@@ -6,6 +6,8 @@
     self.homeModules.applications.documents
     self.homeModules.applications.multimedia
 
+    self.homeModules.productivity.file-management.yazi
+
     self.homeModules.desktop-environment.wayland.core
     self.homeModules.desktop-environment.wayland.hyprland
 

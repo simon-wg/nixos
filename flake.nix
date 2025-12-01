@@ -32,6 +32,7 @@
 
       nixosModules = import ./modules/nixos;
       homeModules = import ./modules/home-manager;
+      users = import ./users;
 
       nixosConfigurations = {
         apollo = nixpkgs.lib.nixosSystem {

@@ -69,6 +69,7 @@ in
 
           # Thinkpad builtin monitor
           "desc:BOE 0x09DC,1920x1080@60,auto,1"
+          "HDMI-A-1,preferred,auto,1,mirror,eDP-1"
         ];
 
         "$terminal" = "uwsm app -- ghostty";

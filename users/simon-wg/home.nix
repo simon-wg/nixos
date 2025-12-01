@@ -11,7 +11,6 @@
     self.homeModules.development.terminals.ghostty
 
     self.homeModules.productivity.file-management.core
-    self.homeModules.productivity.file-management.yazi
 
     self.homeModules.shell.core
     self.homeModules.shell.fish

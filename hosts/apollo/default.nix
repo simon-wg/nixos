@@ -10,7 +10,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../users/simon-wg/system.nix
+    self.users.simon-wg.system
 
     self.nixosModules.core.locale
     self.nixosModules.core.security

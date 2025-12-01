@@ -5,7 +5,7 @@ import qs.Singletons
 
 RowLayout {
     id: root
-    readonly property real bat: 100 * UPower.displayDevice.percentage
+    readonly property int bat: 100 * UPower.displayDevice.percentage
     readonly property bool charging: !UPower.onBattery
     property color color: "white"
 
