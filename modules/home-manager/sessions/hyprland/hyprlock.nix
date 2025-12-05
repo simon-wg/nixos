@@ -1,5 +1,6 @@
 {
   pkgs,
+  self,
   ...
 }:
 {
@@ -11,7 +12,6 @@
 
   programs.hyprlock = {
     enable = true;
-
     settings = {
       background = {
         monitor = "";
@@ -19,7 +19,6 @@
         contrast = 1;
         brightness = 0.8;
       };
-
       general = {
         no_fade_in = true;
         no_fade_out = true;
@@ -27,7 +26,6 @@
         grace = 0;
         disable_loading_bar = true;
       };
-
       input-field = {
         monitor = "";
         size = "250, 60";
@@ -42,7 +40,6 @@
         halign = "center";
         valign = "center";
       };
-
       label = [
         # DATE
         {
@@ -55,7 +52,6 @@
           halign = "center";
           valign = "center";
         }
-
         # Time
         {
           monitor = "";
@@ -70,4 +66,8 @@
       ];
     };
   };
+  # home.file.".config/hypr/hyprlock.conf" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink ''/home/simon-wg/nixos/dotfiles/hypr/hyprlock.conf'';
+  #   recursive = true;
+  # };
 }

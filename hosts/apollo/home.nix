@@ -8,10 +8,10 @@
 
     self.homeModules.productivity.file-management.yazi
 
-    self.homeModules.desktop-environment.wayland.core
-    self.homeModules.desktop-environment.wayland.hyprland
-
     self.homeModules.development.editors.vscode
     self.homeModules.development.tools.gh
+
+    self.homeModules.sessions.hyprland
+    self.homeModules.sessions.wayland
   ];
 }

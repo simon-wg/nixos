@@ -8,12 +8,6 @@
   communication = {
     vesktop = ./communication/vesktop.nix;
   };
-  desktop-environment = {
-    wayland = {
-      core = ./desktop-environment/wayland/core.nix;
-      hyprland = ./desktop-environment/wayland/hyprland;
-    };
-  };
   development = {
     editors = {
       neovim = ./development/editors/neovim;
@@ -37,6 +31,10 @@
       core = ./productivity/file-management/core.nix;
       yazi = ./productivity/file-management/yazi;
     };
+  };
+  sessions = {
+    hyprland = ./sessions/hyprland;
+    wayland = ./sessions/wayland;
   };
   shell = {
     core = ./shell/core.nix;
