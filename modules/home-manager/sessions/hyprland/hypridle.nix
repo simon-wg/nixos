@@ -1,8 +1,31 @@
 { config, ... }:
 {
-  services.hypridle.enable = true;
-  home.file.".config/hypr/hypridle.conf" = {
-    source = config.lib.file.mkOutOfStoreSymlink ''/home/simon-wg/nixos/dotfiles/hypr/hypridle.conf'';
-    recursive = true;
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        before_sleep_cmd = "loginctl lock-session";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
+
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 600;
+          on-timeout = "loginctl lock-session";
+        }
+        {
+          timeout = 900;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
   };
 }
