@@ -6,11 +6,22 @@
 }:
 {
   imports = [
+    self.homeModules.applications.communication
+    self.homeModules.applications.core
+    self.homeModules.applications.documents
+    self.homeModules.applications.multimedia
+
     self.homeModules.development.editors.neovim
+    self.homeModules.development.editors.vscode
     self.homeModules.development.languages.nix
     self.homeModules.development.terminals.ghostty
+    self.homeModules.development.tools.gh
 
     self.homeModules.productivity.file-management.core
+    self.homeModules.productivity.file-management.yazi
+
+    self.homeModules.sessions.hyprland
+    self.homeModules.sessions.wayland
 
     self.homeModules.shell.core
     self.homeModules.shell.fish

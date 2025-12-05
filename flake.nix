@@ -66,7 +66,6 @@
               # Configure home-manager for your user
               home-manager.users.simon-wg = {
                 imports = [
-                  ./hosts/apollo/home.nix
                   ./users/simon-wg/home.nix
 
                   inputs.stylix.homeModules.stylix
