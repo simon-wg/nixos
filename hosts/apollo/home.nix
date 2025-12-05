@@ -14,6 +14,4 @@
     self.homeModules.development.editors.vscode
     self.homeModules.development.tools.gh
   ];
-
-  wayland.windowManager.hyprland.enable = true;
 }

@@ -14,6 +14,7 @@
     #   set -g fish_color_autosuggestion white --dim
     # '';
     shellAbbrs = {
+      ssh = "TERM=xterm-256color ssh";
       ls = "eza";
       l = "eza --icons -l";
       ll = "eza --icons -l";

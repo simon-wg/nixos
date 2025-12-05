@@ -1,6 +1,5 @@
 {
   self,
-  username,
   hostname,
   ...
 }:
@@ -45,7 +44,7 @@
       };
       servers.nixd.settings.nixd.options = {
         nixos.expr = ''(builtins.getFlake "${self.outPath}").nixosConfigurations.${hostname}.options'';
-        home_manager.expr = ''(builtins.getFlake "${self.outPath}").homeConfigurations."${username}@${hostname}".options'';
+        home_manager.expr = ''(builtins.getFlake "${self.outPath}").nixosConfigurations.${hostname}.options.home-manager.users.type.getSubOptions []'';
       };
       trouble.enable = true;
       mappings.format = null;
