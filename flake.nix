@@ -15,7 +15,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nvf = {
       # url = "path:/home/simon-wg/Programming/Hobby/nvf";
-      url = "github:NotAShelf/nvf/v0.8";
+      url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

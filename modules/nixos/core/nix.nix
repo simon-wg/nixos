@@ -13,4 +13,6 @@
     # TODO Move this to be user configurable
     flake = "/home/simon-wg/nixos";
   };
+
+  programs.nix-ld.enable = true;
 }

@@ -3,6 +3,11 @@
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 1234 ];
+    allowedTCPPorts = [
+      2020
+      2021
+      2022
+      2023
+    ];
   };
 }

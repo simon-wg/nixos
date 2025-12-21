@@ -31,10 +31,9 @@
 
     self.nixosModules.virtualisation.docker
 
-    self.nixosModules.desktop.display-manager
-    self.nixosModules.desktop.fonts
-    self.nixosModules.desktop.hyprland
-    self.nixosModules.desktop.xserver
+    self.nixosModules.sessions.display-manager
+    self.nixosModules.sessions.hyprland
+    self.nixosModules.sessions.xserver
 
     self.nixosModules.gaming.steam
   ];

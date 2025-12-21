@@ -5,11 +5,10 @@
     security = ./core/security.nix;
     users = ./core/users.nix;
   };
-  desktop = {
-    display-manager = ./desktop/display-manager.nix;
-    fonts = ./desktop/fonts.nix;
-    hyprland = ./desktop/hyprland.nix;
-    xserver = ./desktop/xserver.nix;
+  sessions = {
+    display-manager = ./sessions/display-manager.nix;
+    hyprland = ./sessions/hyprland.nix;
+    xserver = ./sessions/xserver.nix;
   };
   gaming = {
     steam = ./gaming/steam.nix;
