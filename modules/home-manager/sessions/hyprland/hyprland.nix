@@ -1,5 +1,4 @@
 {
-  self,
   config,
   lib,
   pkgs,
@@ -13,7 +12,6 @@
   ];
   config = {
     home.packages = with pkgs; [
-      quickshell
       hyprpicker
       nerd-fonts.symbols-only
       monaspace.static

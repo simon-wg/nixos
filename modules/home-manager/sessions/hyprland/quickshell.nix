@@ -1,5 +1,8 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    quickshell
+  ];
   home.file.".config/quickshell" = {
     source = config.lib.file.mkOutOfStoreSymlink ''/home/simon-wg/nixos/dotfiles/quickshell'';
     recursive = true;

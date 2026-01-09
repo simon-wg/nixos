@@ -24,18 +24,17 @@
     self.nixosModules.hardware.power
     self.nixosModules.hardware.printing
     self.nixosModules.hardware.touchpad
+    self.nixosModules.hardware.virtualisation
     self.nixosModules.hardware.zswap
 
     self.nixosModules.networking.core
     self.nixosModules.networking.vpn
 
-    self.nixosModules.virtualisation.docker
-
     self.nixosModules.sessions.display-manager
     self.nixosModules.sessions.hyprland
     self.nixosModules.sessions.xserver
 
-    self.nixosModules.gaming.steam
+    self.nixosModules.games.steam
   ];
 
   boot = {
